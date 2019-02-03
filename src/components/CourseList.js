@@ -4,22 +4,22 @@ import TextField from '@material-ui/core/TextField'
 import * as contentful from 'contentful'
 import Course from '../components/Course'
 
-const SPACE_ID = '[INSERT YOUR CONTENTFUL SPACE ID HERE]'
-const ACCESS_TOKEN = '[INSERT YOUR CONTENTFUL ACCESS TOKEN HERE]'
+const SPACE_ID = 'j50y8d8104uc';
+const ACCESS_TOKEN = '83ed3f1c9da56994a27af7a45bd6a6d8147dc6e090f6815eaecad902afee4a35';
 
 const client = contentful.createClient({
     space: SPACE_ID,
     accessToken: ACCESS_TOKEN
-})
+});
 
 class CourseList extends Component {
     state = {
         courses: [],
         searchString: ''
-    }
+    };
 
     constructor() {
-        super()
+        super();
         this.getCourses()
     }
 
@@ -35,7 +35,7 @@ class CourseList extends Component {
                 console.log("Error occured while fetching data")
                 console.log(error)
             })
-    }
+    };
 
     onSearchInputChange = (event) => {
         if (event.target.value) {
@@ -44,7 +44,7 @@ class CourseList extends Component {
             this.setState({searchString: ''})
         }
         this.getCourses()
-    }
+    };
 
     render() {
         return (
@@ -69,4 +69,5 @@ class CourseList extends Component {
         )
     }
 }
+
 export default CourseList;
