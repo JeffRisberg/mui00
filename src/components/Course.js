@@ -14,12 +14,9 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     root: {
-        ...theme.mixins.gutters(),
-        paddingBottom: theme.spacing.unit * 2,
     },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
+    actionButton: {
+        background: "#AAF"
     }
 });
 
@@ -45,16 +42,16 @@ const Course = (props) => {
                         <Button size="small" color="primary" href={props.course.fields.url} target="_blank">
                             Go To Course
                         </Button>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <IconButton className={classes.actionButton} color="inherit" aria-label="Menu">
                             <ThumbupIcon />
                         </IconButton>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <IconButton className={classes.actionButton} color="inherit" aria-label="Menu">
                             <GroupIcon />
                         </IconButton>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <IconButton className={classes.actionButton} color="inherit" aria-label="Menu">
                             <CommentIcon />
                         </IconButton>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <IconButton className={classes.actionButton} color="inherit" aria-label="Menu">
                             <ShareIcon />
                         </IconButton>
                     </CardActions>
