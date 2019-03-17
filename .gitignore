@@ -11,6 +11,10 @@
 # production
 /build
 
+# IntelliJ
+.idea/workspace.xml
+.idea/tasks.xml
+
 # misc
 .DS_Store
 .env.local
