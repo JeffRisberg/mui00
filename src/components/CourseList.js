@@ -56,7 +56,7 @@ class CourseList extends Component {
                                    placeholder="Search for Courses"
                                    margin="normal"
                                    onChange={this.onSearchInputChange} />
-                        <Grid container spacing={24} style={{padding: 24}}>
+                        <Grid container style={{padding: 24}}>
                             {this.state.courses.map(currentCourse => (
                                 <Grid key={currentCourse.sys.id} item xs={12} sm={6} lg={4} xl={3}>
                                     <Course course={currentCourse} />

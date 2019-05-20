@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 const Course = (props) => {
-    const { info, index, classes } = props;
+    const { classes } = props;
     return(
         <div>
             { props.course ? (
