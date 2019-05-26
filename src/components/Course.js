@@ -31,7 +31,7 @@ const Course = (props) => {
                                title={props.course.fields.title}
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="headline" component="h2">
+                        <Typography gutterBottom component="h2">
                             {props.course.fields.title}
                         </Typography>
                         <Typography component="p">
