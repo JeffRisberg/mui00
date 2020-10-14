@@ -5,9 +5,9 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "contentful": "^7.14.7",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "contentful": "^7.14.8",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-scripts": "^3.4.3"
   },
   "scripts": {
