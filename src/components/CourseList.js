@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useEffect, useState} from 'react'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import * as contentful from 'contentful'
@@ -12,62 +12,55 @@ const client = contentful.createClient({
     accessToken: ACCESS_TOKEN
 });
 
-class CourseList extends Component {
-    state = {
-        courses: [],
-        searchString: ''
-    };
+const CourseList = (props) => {
 
-    constructor() {
-        super();
-        this.getCourses()
-    }
+   const getCourses = () => {
+      client.getEntries({
+         content_type: 'course',
+         query: searchString
+      })
+         .then((response) => {
+            setCourses(response.items)
+         })
+         .catch((error) => {
+            console.log("Error occurred while fetching data")
+            console.log(error)
+         })
+   };
 
-    getCourses = () => {
-        client.getEntries({
-            content_type: 'course',
-            query: this.state.searchString
-        })
-            .then((response) => {
-                this.setState({courses: response.items})
-            })
-            .catch((error) => {
-                console.log("Error occurred while fetching data")
-                console.log(error)
-            })
-    };
+   const [courses, setCourses] = useState([]);
+   const [searchString, setSearchString] = useState('');
 
-    onSearchInputChange = (event) => {
-        if (event.target.value) {
-            this.setState({searchString: event.target.value})
-        } else {
-            this.setState({searchString: ''})
-        }
-        this.getCourses()
-    };
+   useEffect((value) => {
+      if (value) {
+         setSearchString(value)
+      } else {
+         setSearchString("")
+      }
+      getCourses()
+   },[searchString])
 
-    render() {
-        return (
+   return (
+      <div>
+         {courses ? (
             <div>
-                {this.state.courses ? (
-                    <div>
-                        <TextField style={{padding: 24}}
-                                   id="searchInput"
-                                   placeholder="Search for Courses"
-                                   margin="normal"
-                                   onChange={this.onSearchInputChange} />
-                        <Grid container style={{padding: 24}}>
-                            {this.state.courses.map(currentCourse => (
-                                <Grid key={currentCourse.sys.id} item xs={12} sm={6} lg={4} xl={3}>
-                                    <Course course={currentCourse} />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </div>
-                ) : "No courses found"}
+               <TextField style={{padding: 24}}
+                          id="searchInput"
+                          placeholder="Search for Courses"
+                          margin="normal"
+                          onChange={setSearchString}/>
+               <Grid container style={{padding: 24}}>
+                  {courses.map(currentCourse => (
+                     <Grid key={currentCourse.sys.id} item xs={12} sm={6} lg={4}
+                           xl={3}>
+                        <Course course={currentCourse}/>
+                     </Grid>
+                  ))}
+               </Grid>
             </div>
-        )
-    }
+         ) : "No courses found"}
+      </div>
+   )
 }
 
 export default CourseList;
