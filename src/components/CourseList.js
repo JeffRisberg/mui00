@@ -8,13 +8,22 @@ const SPACE_ID = 'j50y8d8104uc';
 const ACCESS_TOKEN = '83ed3f1c9da56994a27af7a45bd6a6d8147dc6e090f6815eaecad902afee4a35';
 
 const client = contentful.createClient({
-    space: SPACE_ID,
-    accessToken: ACCESS_TOKEN
+   space: SPACE_ID,
+   accessToken: ACCESS_TOKEN
 });
 
 const CourseList = (props) => {
 
-   const getCourses = () => {
+   const [courses, setCourses] = useState([]);
+   const [searchString, setSearchString] = useState('');
+
+   useEffect((value) => {
+      if (value) {
+         setSearchString(value)
+      } else {
+         setSearchString("")
+      }
+
       client.getEntries({
          content_type: 'course',
          query: searchString
@@ -26,19 +35,7 @@ const CourseList = (props) => {
             console.log("Error occurred while fetching data")
             console.log(error)
          })
-   };
-
-   const [courses, setCourses] = useState([]);
-   const [searchString, setSearchString] = useState('');
-
-   useEffect((value) => {
-      if (value) {
-         setSearchString(value)
-      } else {
-         setSearchString("")
-      }
-      getCourses()
-   },[searchString])
+   }, [searchString])
 
    return (
       <div>
