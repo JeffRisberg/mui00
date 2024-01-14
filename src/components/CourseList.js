@@ -17,13 +17,7 @@ const CourseList = (props) => {
    const [courses, setCourses] = useState([]);
    const [searchString, setSearchString] = useState('');
 
-   useEffect((value) => {
-      if (value) {
-         setSearchString(value)
-      } else {
-         setSearchString("")
-      }
-
+   useEffect(() => {
       client.getEntries({
          content_type: 'course',
          query: searchString
@@ -45,7 +39,10 @@ const CourseList = (props) => {
                           id="searchInput"
                           placeholder="Search for Courses"
                           margin="normal"
-                          onChange={setSearchString}/>
+                          onChange=
+                             {(e) => {
+                               setSearchString(e.target.value)}}>
+               </TextField>
                <Grid container style={{padding: 24}}>
                   {courses.map(currentCourse => (
                      <Grid key={currentCourse.sys.id} item xs={12} sm={6} lg={4}
